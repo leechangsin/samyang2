@@ -1,4 +1,4 @@
-package work.crypt;
+package main.java.util;
 
 // Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //
