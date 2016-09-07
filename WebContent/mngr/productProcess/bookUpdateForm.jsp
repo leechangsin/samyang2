@@ -48,12 +48,41 @@
 				<input type="text" id="author" name="author" size="20" maxlength="30" value="${book.author}">
 			</li>
 			<li><label for="publishing_com">출판사</label>
-				<input type="text" id="publishing_com" name="publishing_com" size="20" maxlength="30" value="${book.publishnig_com}">
+				<input type="text" id="publishing_com" name="publishing_com" size="20" maxlength="30" value="${book.publishing_com}">
 			</li>
-			<li><label for="publishing_date"></label>
-				<fmt:formatDate var="nowTimeStr" pattern="yyyy-MM-dd" value="${nowTime}"/>
-				<fmt:parseNumber var="lastYear" type="NUMBER" value="${nowTimeStr.toString().subString(0,4)}"/>
-				<c:fi
+			<li><label for="publishing_date">출판일</label>
+				<div id="publishing_date">
+					<jsp:useBean id="nowTime" class="java.util.Date"/>
+					<fmt:formatDate var="nowTimeStr" pattern="yyyy-MM-dd" value="${nowTime}"/>
+					<fmt:parseNumber var="lastYear" type="NUMBER" value="${nowTimeStr.toString().substring(0,4)}"/>
+					<select name="publishing_year">
+						<c:forEach var="i" begin="2010" end="${lastYear}">
+							<option value="${i}">${i}</option>
+						</c:forEach>
+					</select>년
+					<select name="publishing_month">
+						<c:forEach var="i" begin="1" end="12">
+							<option value="${i}">${i}</option>
+						</c:forEach>
+					</select>월
+					<select name="publishing_day">
+						<c:forEach var="i" begin="1" end="31">
+							<option value="${i}">${i}</option>
+						</c:forEach>
+					</select>일
+				</div>
+			</li>
+			<li><label for="book_image">이미지</label>
+				<input type="file" id="book_image" name="book_image">${book.book_image}
+			</li>
+			<li><label for="book_content">내용</label>
+				<textarea id="book_content" name="book_content" rows="13" cols="50">${book.book_content}</textarea>
+			</li>
+			<li><label for="discount_rate">할인율</label>
+				<input type="text" id="discount_rate" name="discount_rate" size="5" maxlength="2" value="${book.discount_rate}">
+			</li>
+			<li class="label2">
+				<input type="submit" id="updateBook" value="수정">
 			</li>
 		</ul>
 	</div>

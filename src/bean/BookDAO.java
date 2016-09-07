@@ -55,7 +55,7 @@ public class BookDAO {
 		try {
 			conn = DBManager.getConnection();
 			sql = "insert into book(book_kind, book_title, book_price, book_count, author, publishing_com, ";
-			sql += "publishing_date, book_image, book_content, discount_rate, reg_date ";
+			sql += "publishing_date, book_image, book_content, discount_rate, reg_date)";
 			sql += "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 			pstmt = conn.prepareStatement(sql);
@@ -282,6 +282,7 @@ public class BookDAO {
 				book.setPublishing_com(rs.getString("publishing_com"));
 				book.setPublishing_date(rs.getString("publishing_date"));
 				book.setBook_image(rs.getString("book_image"));
+				book.setBook_content(rs.getString("book_content"));
 				book.setDiscount_rate(rs.getByte("discount_rate"));
 				book.setReg_date(rs.getTimestamp("reg_date"));
 			} // end if(rs.next())
@@ -301,7 +302,7 @@ public class BookDAO {
 
 			sql = "update book set book_kind=?, book_title=?, book_price=?, book_count=?, ";
 			sql += "author=?, publishing_com=?, publishing_date=?, book_image=?, book_content=?, ";
-			sql += "discount_rate=?, where book_id=?";
+			sql += "discount_rate=? where book_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, book.getBook_kind());
 			pstmt.setString(2, book.getBook_title());

@@ -13,48 +13,37 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import bean.BookDAO;
 import bean.BookDO;
 
-public class BookRegisterProAction implements CommandAction {
+public class BookUpdateProAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		
-		String filename= "";
-		//웹 애플리케이션상의 절대 경로
+		String filename = "";
 		String realFolder = "";
-		//파일이 업로드될 폴더 지정
-		String saveFolder ="/bookImage";
-		//인코딩 타입
+		String saveFolder = "/bookImage";
 		String encType = "utf-8";
-		//최대 업로드될 크기 1MB
-		int maxSize = 10*1024*1024;
-		//파일 업로드를 수행할 MultipartRequest 객체
+		int maxSize = 10 * 1024 * 1024;
 		MultipartRequest imageUp = null;
-		//웹 애플리케이션상의 절대 경로
+
 		ServletContext context = request.getSession().getServletContext();
 		realFolder = context.getRealPath(saveFolder);
-		
-		try{
-			//파일 업로드 수행
+
+		try {
 			imageUp = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-			
-			//<input type="file">인 모든 파라미터를 얻어냄
 			Enumeration<?> files = imageUp.getFileNames();
-			
-			//파일정보가 있다면
-			while(files.hasMoreElements()){
-				//input태그의 속성이 file인 태그의 name 속성값을 files.nextElement()가 반환한다.
-				String name = (String)files.nextElement();
-				//서버에 저장된 파일 이름
+
+			while (files.hasMoreElements()) {
+				String name = (String) files.nextElement();
 				filename = imageUp.getFilesystemName(name);
 			}
-		} catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}//end try
 		
-		//폼으로부터 넘어온 정보중 파일이 아닌 정보를 얻어냄
 		BookDO book = new BookDO();
+		int book_id = Integer.parseInt(imageUp.getParameter("book_id"));
 		String book_kind = imageUp.getParameter("book_kind");
 		String book_title = imageUp.getParameter("book_title");
 		String book_price = imageUp.getParameter("book_price");
@@ -77,17 +66,17 @@ public class BookRegisterProAction implements CommandAction {
 		book.setBook_count(Short.parseShort(book_count));
 		book.setAuthor(author);
 		book.setPublishing_com(publishing_com);
-		book.setPublishing_date(year+"-"+month+"-"+day);
+		book.setPublishing_date(year + "-" + month + "-" + day);
 		book.setBook_image(filename);
 		book.setBook_content(book_content);
 		book.setDiscount_rate(Byte.parseByte(discount_rate));
 		book.setReg_date(new Timestamp(System.currentTimeMillis()));
 		
 		BookDAO bookDao = new BookDAO();
-		bookDao.insertBook(book);
+		bookDao.updateBook(book, book_id);
 		
 		request.setAttribute("book_kind", book_kind);
-		return "/mngr/productProcess/bookRegisterPro.jsp";
+		return "/mngr/productProcess/bookUpdatePro.jsp";
 	}
 
 }
