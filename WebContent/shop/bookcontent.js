@@ -5,10 +5,10 @@ $(document).ready(function(){
 		var book_kind = $("#book_kind").val();
 		var query = {
 				book_id : $("#book_id").val(),
-				book_count : $("#book_count").val(),
+				buy_count : $("#buy_count").val(),
 				book_image : $("#book_image").val(),
 				book_title : $("#book_title").val(),
-				book_price : $("#buy_price").val(),
+				buy_price : $("#buy_price").val(),
 				buyer : buyer
 		};
 
@@ -42,7 +42,7 @@ function edit(editBtn){
 //삭제버튼 클릭
 function del(delBtn){
 	var rStr = delBtn.name;
-	var arr = rStr.spli(",");
+	var arr = rStr.split(",");
 	var query = { qna_id : arr[0] };
 
 	$.ajax({

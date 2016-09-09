@@ -9,12 +9,12 @@
 </head>
 <body>
 	<c:if test="${empty sessionScope.id}">
-		<div id="1Status">
+		<div id="lStatus">
 			<ul>
 				<li><label for="cid">아이디</label>
-					<input type="email" id="cid" name="cid" size="20" maxlength="50" placeholder="example@kings.com">
+					<input type="email" id="cId" name="cId" size="20" maxlength="50" placeholder="example@kings.com">
 				</li>
-				<li><label for="cpasswd">비밀번호</label>
+				<li><label for="cPasswd">비밀번호</label>
 					<input type="password" id="cPasswd" name="cPasswd" size="20" maxlength="16" placeholder="6~16자 숫자/문자">
 				</li>
 			</ul>
@@ -23,7 +23,7 @@
 		</div>
 	</c:if>
 	<c:if test="${!empty sessionScope.id}">
-		<div id="1Status">
+		<div id="lStatus">
 			<ul>
 				<li>${sessionScope.id}님이 로그인 하셨습니다.
 				<div id="info">

@@ -3,23 +3,23 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.MemberDAO;
+import bean.QnaDAO;
 
-public class LoginProAction implements CommandAction{
+public class QnaDeleteProAction implements CommandAction {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 		// TODO Auto-generated method stub
+		
 		request.setCharacterEncoding("utf-8");
 		
-		String id = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
+		int qna_id = Integer.parseInt(request.getParameter("qna_id"));
 		
-		MemberDAO memberDao = new MemberDAO();
-		int check = memberDao.userCheck(id, passwd);
+		QnaDAO qnaDao = new QnaDAO();
+		int check = qnaDao.deleteArticle(qna_id);
 		
-		request.setAttribute("id", id);
 		request.setAttribute("check", new Integer(check));
-		return "/member/loginPro.jsp";
+		return "/qna/qnaDeletePro.jsp";
 	}
+
 }

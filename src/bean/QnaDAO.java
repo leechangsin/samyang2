@@ -56,7 +56,7 @@ public class QnaDAO {
 	}// end insertArticle(QnaDO article)
 	
 	// 관리자가 작성한 qna(답변)을 등록하는 메서드
-	public int insertArcitle(QnaDO article, int qna_id) {
+	public int insertArticle(QnaDO article, int qna_id) {
 		try {
 			conn = DBManager.getConnection();
 			sql = "insert into qna(book_id, book_title, qna_writer, qna_content, group_id, qora, reply, reg_date) ";
@@ -86,7 +86,7 @@ public class QnaDAO {
 		} // end try
 
 		return x;
-	}// end insertArcitle(QnaDO article, int qna_id)
+	}// end insertArticle(QnaDO article, int qna_id)
 	
 	// qna테이블에 저장된 전체글의 갯수를 얻어내는 메서드
 	public int getArticleCount() {

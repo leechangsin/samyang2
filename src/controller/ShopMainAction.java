@@ -26,6 +26,7 @@ public class ShopMainAction implements CommandAction {
 			bookLists.add(bookList);
 		}
 		
+		request.setAttribute("type", new Integer(1));
 		request.setAttribute("bookLists", bookLists);
 		return "/shop/shopMain.jsp";
 	}

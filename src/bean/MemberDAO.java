@@ -77,7 +77,7 @@ public class MemberDAO {
 		
 		try{
 			conn = DBManager.getConnection();
-			sql = "seelct id from member where id=?";
+			sql = "select id from member where id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -133,6 +133,7 @@ public class MemberDAO {
 			String shaPasswd = sha.getSha256(orgPasswd.getBytes());
 			sql = "select * from member where id=?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
@@ -203,6 +204,7 @@ public class MemberDAO {
 			String shaPasswd = sha.getSha256(orgPasswd.getBytes());
 			sql = "select passwd from member where id=?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){

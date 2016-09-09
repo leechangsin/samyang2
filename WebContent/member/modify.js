@@ -11,7 +11,7 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type : "post",
-			url : "/shopping/modifyPro.do",
+			url : "/shoppingmall/modifyPro.do",
 			data : query,
 			success : function(data){
 				var str1 = '<p id="ck">';
@@ -36,3 +36,8 @@ $(document).ready(function(){
 		$(location).attr('href', url);
 	});
 });
+
+function shopMain(){
+	var url = "/shoppingmall/index.do";
+	$(location).attr('href', url);
+}

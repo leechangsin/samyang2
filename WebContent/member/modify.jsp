@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 <link rel="stylesheet" href="/shoppingmall/css/style.css"/>
 <script src="/shoppingmall/js/jquery-1.11.0.min.js"></script>
+<script src="/shoppingmall/member/modify.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -34,7 +35,7 @@
 			</ul>
 		</form>
 		
-		<button id="shopMain" onclick= "var url=/shoppingmall/index.do; $(location).attr('href',url);">메인으로</button>
+		<button id="shopMain" onclick="shopMain(this)">메인으로</button>
 	</div>
 </body>
 </html>

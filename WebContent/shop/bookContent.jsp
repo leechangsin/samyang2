@@ -49,7 +49,7 @@
 							<p>일시품절
 						</c:if>
 						<c:if test="${book.getBook_count() >= 1}">
-							수량 : <input type="text" size="5" id="buy_content" value="1">개
+							수량 : <input type="text" size="5" id="buy_count" value="1">개
 						</c:if>
 						<input type="hidden" id="book_id" value="${book_id}">
 						<input type="hidden" id="book_image" value="${book.getBook_image()}">
@@ -92,13 +92,14 @@
 				<ul>
 					<li>
 						<c:set var="writer" value="${qna.getQna_writer()}"/>
-						${fn:substring(writer, 0, 4}****
+						${fn:substring(writer, 0, 4)}****
 						<small class="date">(${qna.getReg_date()})</small>
 					</li>
 					<li>${qna.getQna_content()}
 					<li>
 						<c:if test="${sessionScope.id == writer}">
-							<button id="edit" name="${qna.getQna_id()},${book_kind}" onclick="edit(this)">삭제</button>
+							<button id="edit" name="${qna.getQna_id()},${book_kind}" onclick="edit(this)">수정</button>
+							<button id="del" name="${qna.getQna_id()},${book_id},${book_kind}" onclick="del(this)">삭제</button>
 						</c:if>
 					</li>
 				</ul>

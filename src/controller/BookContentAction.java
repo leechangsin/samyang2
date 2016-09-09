@@ -31,7 +31,7 @@ public class BookContentAction implements CommandAction {
 		}
 		
 		request.setAttribute("book", book);
-		request.setAttribute("book_id", book_kind);
+		request.setAttribute("book_id", book_id);
 		request.setAttribute("book_kind", book_kind);
 		request.setAttribute("count", count);
 		request.setAttribute("type", new Integer(1));
