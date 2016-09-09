@@ -129,7 +129,7 @@ public class MemberDAO {
 		
 		try{
 			conn = DBManager.getConnection();
-			String orgPasswd = member.getPasswd();
+			String orgPasswd = passwd;
 			String shaPasswd = sha.getSha256(orgPasswd.getBytes());
 			sql = "select * from member where id=?";
 			pstmt = conn.prepareStatement(sql);
@@ -160,7 +160,67 @@ public class MemberDAO {
 		SHA256 sha = SHA256.getInsatnce();
 		
 		try{
-			conn 
-		}
-	}
+			conn = DBManager.getConnection();
+			String orgPasswd = member.getPasswd();
+			String shaPasswd = sha.getSha256(orgPasswd.getBytes());
+			
+			sql = "select passwd from member where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getId());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				String dbPasswd = rs.getString("passwd");
+				if(BCrypt.checkpw(shaPasswd, dbPasswd)){
+					sql = "update member set name=?, address=?, tel=? where id=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, member.getName());
+					pstmt.setString(2, member.getAddress());
+					pstmt.setString(3, member.getTel());
+					pstmt.setString(4, member.getId());
+					pstmt.executeUpdate();
+					x = 1;
+				} else{
+					x = 0;
+				}//end if(BCrypt.checkpw(shaPasswd, dbPasswd))
+			}//end rs.next()
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally{
+			DBManager.closeConnection(conn, pstmt, rs);
+		}//end try
+		
+		return x;
+	}//end updateMember(MemberDO member)
+	
+	public int deleteMember(String id, String passwd){
+		int x = -1;
+		SHA256 sha = SHA256.getInsatnce();
+		
+		try{
+			conn = DBManager.getConnection();
+			String orgPasswd = passwd;
+			String shaPasswd = sha.getSha256(orgPasswd.getBytes());
+			sql = "select passwd from member where id=?";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				String dbPasswd = rs.getString("passwd");
+				if(BCrypt.checkpw(shaPasswd, dbPasswd)){
+					sql = "delete from member where id=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, id);
+					pstmt.executeUpdate();
+					x = 1;//회원탈퇴처리 성공
+				} else{
+					x = 0;//회원탈퇴 처리 실패
+				}//end if(BCrypt.checkpw(shaPasswd, dbPasswd))
+			}//end if(rs.next())
+		} catch(Exception e){
+			DBManager.closeConnection(conn, pstmt, rs);
+		}//end try
+		
+		return x;
+	}//end deleteMember(String id, String passwd)
 }

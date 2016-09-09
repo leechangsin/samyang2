@@ -107,6 +107,28 @@ public class QnaDAO {
 		return x;
 	}// end getArticleCount()
 	
+	// book_id에 해당하는 상품의 QnA수를 얻어냄
+	public int getArticleCount(int book_id){
+		int x = 0;
+		
+		try{
+			conn = DBManager.getConnection();
+			sql = "select count(*) from qna where book_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, book_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+				x = rs.getInt(1);
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally{
+			DBManager.closeConnection(conn, pstmt, rs);
+		}//end try
+		
+		return x;
+	}
+	
 	// 지정한 수만큼의 qna글을 얻어내는 메서드
 	public List<QnaDO> getArticles(int count) {
 		List<QnaDO> articleList = null;

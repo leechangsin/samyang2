@@ -135,7 +135,9 @@ public class BookDAO {
 		try {
 			conn = DBManager.getConnection();
 			sql = "select count(*) from book where book_kind=?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, kind);
+			rs = pstmt.executeQuery();
 
 			if (rs.next())
 				x = rs.getInt(1);
@@ -182,7 +184,7 @@ public class BookDAO {
 				sql = "select * from book";
 				pstmt = conn.prepareStatement(sql);
 			} else {
-				sql = "select * from book where book_kind=? orderby reg_date desc";
+				sql = "select * from book where book_kind=? order by reg_date desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, book_kind);
 			}
@@ -224,7 +226,7 @@ public class BookDAO {
 
 		try {
 			conn = DBManager.getConnection();
-			sql = "select * from book where book_kind=? orderby reg_date desc limit ?,?";
+			sql = "select * from book where book_kind=? order by reg_date desc limit ?,?";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, book_kind);

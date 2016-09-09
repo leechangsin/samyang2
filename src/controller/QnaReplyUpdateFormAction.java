@@ -19,6 +19,8 @@ public class QnaReplyUpdateFormAction implements CommandAction {
 		QnaDAO qnaDao = new QnaDAO();
 		QnaDO qna = new QnaDO();
 		
+		//qna = qnaDao.updateGetArticle(qna_id);
+		
 		request.setAttribute("qna", qna);
 		request.setAttribute("qna_id", new Integer(qna_id));
 		request.setAttribute("type", new Integer(0));
