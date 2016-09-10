@@ -58,7 +58,7 @@ public class BookUpdateProAction implements CommandAction {
 		String month = imageUp.getParameter("publishing_month").length() == 1 ?
 				"0" + imageUp.getParameter("publishing_month") : imageUp.getParameter("publishing_month");
 		String day = imageUp.getParameter("publishing_day").length() == 1 ?
-				"0" + imageUp.getParameter("publishing_day") : imageUp.getParameter("publishig_day");
+				"0" + imageUp.getParameter("publishing_day") : imageUp.getParameter("publishing_day");
 		
 		book.setBook_kind(book_kind);
 		book.setBook_title(book_title);

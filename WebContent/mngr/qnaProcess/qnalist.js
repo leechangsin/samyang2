@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 //답변하기 버튼 클릭
 function reply(replyBtn){
-	var sStr = replyBtn.name;
+	var rStr = replyBtn.name;
 	var query = "/shoppingmall/mg/qnaReplyForm.do?qna_id=" + rStr;
 	var url = query;
 	$(location).attr('href', url);

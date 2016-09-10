@@ -29,7 +29,7 @@
 		<c:forEach var="qna" items="${qnaList}">
 			<ul>
 				<c:if test="${qna.getQora() == 1}">
-					<li><p>[${qna.getQna_writer()}] 상품에 대한 QnA</p>
+					<li><p>[${qna.getBook_title()}] 상품에 대한 QnA</p>
 						<p>${qna.getQna_writer()} <small class="date">(${qna.getReg_date()})</small></p>
 						<p>${qna.getQna_content()}</p>
 					</li>

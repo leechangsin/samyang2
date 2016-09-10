@@ -34,7 +34,6 @@
 		<c:if test="${book_kind != 'all'}">
 			<c:set var="display" value="[${book_kindName}] 분류의 목록"/>
 		</c:if>
-		<p class="b">${display} : (${count}개)</p>
 		<c:forEach var="book" items="${bookList}">
 			<table class="vhcenter">
 				<tr height="30">

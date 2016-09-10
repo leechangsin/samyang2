@@ -48,7 +48,7 @@
 					<c:if test="${i+1} > buyLists.size()-1">
 						<c:set var="nid" value="0"/>
 					</c:if>
-					<c:if test="${i+1}">
+					<c:if test="${i+1} <= buyLists.size()-1">
 						<c:set var="nid" value="${buyLists.get(i+1).getBuy_id()}"/>
 					</c:if>
 					<tr>
