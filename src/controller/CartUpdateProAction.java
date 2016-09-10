@@ -18,6 +18,6 @@ public class CartUpdateProAction implements CommandAction {
 		cartDao.updateCount(cart_id, buy_count);
 		
 		request.setAttribute("type", new Integer(1));
-		return "/cart/cartUpdatePro.jsp";
+		return "/shoppingmall/cartList.do";
 	}
 }

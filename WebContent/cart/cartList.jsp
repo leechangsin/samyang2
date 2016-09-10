@@ -47,8 +47,13 @@
 					<tr>
 						<td width="300"> <img src="/shoppingmall/bookImage/${cart.getBook_image()}" class="cartimage">${cart.getBook_title()}</td>
 						<td width="100"> <fmt:formatNumber value="${cart.getBuy_price()}" type="number" pattern="#,##0"/>원</td>
-						<td width="150"> <input type="text" id="buy_count" name="buy_count" size="5" value="${cart.getBuy_count()}">
-										<button id="editSu" name="${cart.getCart_id()},${cart.getBuy_count()}" onclick="editSu(this)">수정</button>
+						<td width="150"> 
+							<form method="post" action="/shoppingmall/cartUpdatePro.do">
+								<!-- <input type="hidden" name="buyer" value="${sessionScope.id}"> -->
+								<input type="hidden" name="cart_id" value="${cart.getCart_id()}">
+								<input type="text" id="buy_count" name="buy_count" size="5" value="${cart.getBuy_count()}">
+								<input type="submit" value="수정">
+							</form>
 						</td>
 						<td align="center" width="150">
 							<c:set var="amount" value="${cart.getBuy_count()*cart.getBuy_price()}"/>
@@ -72,6 +77,7 @@
 										</form>
 									</td>
 									<td><form id="cartClearForm" method="post" action="/shoppingmall/deleteCart.do">
+											<input type="hidden" name="list" value="all">
 											<input type="hidden" name="buyer" value="${sessionScope.id}">
 											<input type="submit" value="장바구니 비우기">
 										</form>

@@ -96,6 +96,7 @@ public class CartDAO {
 		try{
 			conn = DBManager.getConnection();
 			sql = "update cart set buy_count=? where cart_id=?";
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setByte(1, count);
 			pstmt.setInt(2, cart_id);
 			pstmt.executeUpdate();
