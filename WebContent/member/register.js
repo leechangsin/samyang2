@@ -21,8 +21,8 @@ $(document).ready(function(){
 					}//end if(check == 1)
 				}
 			});
-		} //아이디를 입력하지 않고 ID중복확인 버튼을 클릭한 경우 
-		else {
+		}
+		else {  //아이디를 입력하지 않고 ID중복확인 버튼을 클릭한 경우
 			alert("사용할 아이디를 입력하세요.");
 			$("#id").focus();
 		}//end if($("#id").val())
